@@ -19,11 +19,13 @@ public class IgnoreCommand implements CommandExecutor, Listener {
             return true;
         }
 
-        OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
-
+        OfflinePlayer target = Bukkit.getPlayerExact(args[0]);
         if (target == null) {
-            sender.sendMessage(ChatColor.DARK_RED + "Player not found");
-            return true;
+            target = Bukkit.getOfflinePlayer(args[0]);
+            if (!target.hasPlayedBefore()) {
+                sender.sendMessage(ChatColor.DARK_RED + "Player not found");
+                return true;
+            }
         } else if (target.getName().equals(sender.getName())) {
             sender.sendMessage(ChatColor.DARK_RED + "You can't ignore yourself");
             return true;
