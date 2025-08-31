@@ -11,7 +11,6 @@ import org.poopcraft.chatplugin.IgnoreSystem;
 import java.util.UUID;
 
 public class IgnoreListCommand implements CommandExecutor {
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length > 0) {
@@ -22,7 +21,7 @@ public class IgnoreListCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         if (IgnoreSystem.ignoreList.get(player.getUniqueId()).isEmpty()) {
-            sender.sendMessage(ChatColor.GOLD + "You aren't ignoring anyone");
+            sender.sendMessage(ChatColor.DARK_RED + "You aren't ignoring anyone");
             return true;
         }
 
