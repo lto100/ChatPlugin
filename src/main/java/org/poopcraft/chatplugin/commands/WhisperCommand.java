@@ -11,7 +11,6 @@ import org.poopcraft.chatplugin.IgnoreSystem;
 import java.util.Arrays;
 
 public class WhisperCommand implements CommandExecutor {
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length < 2) {

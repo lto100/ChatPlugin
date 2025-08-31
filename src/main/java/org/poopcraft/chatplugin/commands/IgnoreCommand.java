@@ -11,7 +11,6 @@ import org.bukkit.event.Listener;
 import org.poopcraft.chatplugin.IgnoreSystem;
 
 public class IgnoreCommand implements CommandExecutor, Listener {
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length != 1) {
