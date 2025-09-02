@@ -8,7 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.poopcraft.chatplugin.IgnoreSystem;
+import org.poopcraft.chatplugin.IgnoreManager;
 
 public class IgnoreCommand implements CommandExecutor, Listener {
     @Override
@@ -32,11 +32,11 @@ public class IgnoreCommand implements CommandExecutor, Listener {
 
         Player player = (Player) sender;
 
-        if (IgnoreSystem.ignoreList.get(player.getUniqueId()).contains(target.getUniqueId())) {
-            IgnoreSystem.ignoreList.get(player.getUniqueId()).remove(target.getUniqueId());
+        if (IgnoreManager.ignoreList.get(player.getUniqueId()).contains(target.getUniqueId())) {
+            IgnoreManager.ignoreList.get(player.getUniqueId()).remove(target.getUniqueId());
             sender.sendMessage(ChatColor.GOLD + target.getName() + " is no longer ignored");
         } else {
-            IgnoreSystem.ignoreList.get(player.getUniqueId()).add(target.getUniqueId());
+            IgnoreManager.ignoreList.get(player.getUniqueId()).add(target.getUniqueId());
             sender.sendMessage(ChatColor.GOLD + "Now ignoring " + target.getName());
         }
 

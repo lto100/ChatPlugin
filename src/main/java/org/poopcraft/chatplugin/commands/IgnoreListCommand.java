@@ -6,7 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.poopcraft.chatplugin.IgnoreSystem;
+import org.poopcraft.chatplugin.IgnoreManager;
 
 import java.util.UUID;
 
@@ -20,14 +20,14 @@ public class IgnoreListCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (IgnoreSystem.ignoreList.get(player.getUniqueId()).isEmpty()) {
+        if (IgnoreManager.ignoreList.get(player.getUniqueId()).isEmpty()) {
             sender.sendMessage(ChatColor.DARK_RED + "You aren't ignoring anyone");
             return true;
         }
 
         String message = ChatColor.GOLD + "ignore list:\n";
 
-        for (UUID ignoredUUID : IgnoreSystem.ignoreList.get(player.getUniqueId())) {
+        for (UUID ignoredUUID : IgnoreManager.ignoreList.get(player.getUniqueId())) {
             String name = Bukkit.getOfflinePlayer(ignoredUUID).getName();
 
             message += (ChatColor.YELLOW + name + "\n");
