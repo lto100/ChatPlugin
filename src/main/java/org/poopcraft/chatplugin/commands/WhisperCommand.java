@@ -6,7 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.poopcraft.chatplugin.IgnoreSystem;
+import org.poopcraft.chatplugin.IgnoreManager;
 
 import java.util.Arrays;
 
@@ -29,7 +29,7 @@ public class WhisperCommand implements CommandExecutor {
             return true;
         }
 
-        if (IgnoreSystem.ignoreList.get(target.getUniqueId()).contains(player.getUniqueId())) {
+        if (IgnoreManager.ignoreList.get(target.getUniqueId()).contains(player.getUniqueId())) {
             sender.sendMessage(ChatColor.DARK_RED + target.getName() + " is ignoring you");
             return true;
         }

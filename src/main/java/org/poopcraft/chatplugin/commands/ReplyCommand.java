@@ -6,7 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.poopcraft.chatplugin.IgnoreSystem;
+import org.poopcraft.chatplugin.IgnoreManager;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ public class ReplyCommand implements CommandExecutor {
         if (target == null) {
             player.sendMessage(ChatColor.DARK_RED + "You have no one to reply to");
             return true;
-        } else if (IgnoreSystem.ignoreList.get(player.getUniqueId()).contains(target.getUniqueId())) {
+        } else if (IgnoreManager.ignoreList.get(player.getUniqueId()).contains(target.getUniqueId())) {
             sender.sendMessage(ChatColor.DARK_RED + target.getName() + "is ignoring you");
             return true;
         }

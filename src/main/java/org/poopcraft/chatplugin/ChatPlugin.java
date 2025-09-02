@@ -2,19 +2,20 @@ package org.poopcraft.chatplugin;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.poopcraft.chatplugin.commands.*;
+import org.poopcraft.chatplugin.listeners.*;
 
 public final class ChatPlugin extends JavaPlugin {
-    public static ChatPlugin plugin;
+    private static ChatPlugin instance;
+
+    public static ChatPlugin getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
-        plugin = this;
+        instance = this;
 
-        if (!this.getDataFolder().exists()) {
-            getDataFolder().mkdir();
-        }
-
-        IgnoreSystem.load();
+        IgnoreManager.load();
 
         this.getCommand("whisper").setExecutor(new WhisperCommand());
         this.getCommand("reply").setExecutor(new ReplyCommand());
@@ -23,11 +24,13 @@ public final class ChatPlugin extends JavaPlugin {
         this.getCommand("kill").setExecutor(new KillCommand());
         this.getCommand("help").setExecutor(new HelpCommand());
 
-        getServer().getPluginManager().registerEvents(new IgnoreSystem(), this);
+        getServer().getPluginManager().registerEvents(new ChatEventListener(), this);
+        getServer().getPluginManager().registerEvents(new JoinEventListener(), this);
     }
 
     @Override
     public void onDisable() {
-        IgnoreSystem.save();
+        IgnoreManager.save();
+        instance = null;
     }
 }
