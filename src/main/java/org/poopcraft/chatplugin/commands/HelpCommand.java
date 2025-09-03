@@ -16,11 +16,11 @@ public class HelpCommand implements CommandExecutor {
             return true;
         }
 
-        String message = ChatColor.GOLD + "commands:\n" + ChatColor.YELLOW;
+        String message = ChatColor.GOLD + "Commands:\n" + ChatColor.YELLOW;
 
         Map<String, Map<String, Object>> commands = ChatPlugin.getInstance().getDescription().getCommands();
         for (Map.Entry<String, Map<String, Object>> entry : commands.entrySet()) {
-            message += entry.getKey() + " - " + entry.getValue().get("description") + "\n";
+            message += "/" + entry.getKey() + " - " + entry.getValue().get("description") + "\n";
         }
 
         sender.sendMessage(message);
