@@ -13,7 +13,7 @@ import java.util.UUID;
 public class IgnoreListCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length > 0) {
+        if (args.length > 1) {
             sender.sendMessage(ChatColor.DARK_RED + command.getUsage());
             return true;
         }
@@ -25,10 +25,35 @@ public class IgnoreListCommand implements CommandExecutor {
             return true;
         }
 
-        String message = ChatColor.GOLD + "ignore list:\n";
+        int pages = (int) Math.ceil(IgnoreManager.ignoreList.get(player.getUniqueId()).size() / 10.0);
+        int page = 1;
+        if (args.length == 1) {
+            int num;
 
-        for (UUID ignoredUUID : IgnoreManager.ignoreList.get(player.getUniqueId())) {
-            String name = Bukkit.getOfflinePlayer(ignoredUUID).getName();
+            try {
+                num = Integer.parseInt(args[0]);
+            } catch (NumberFormatException e) {
+                sender.sendMessage(ChatColor.DARK_RED + command.getUsage());
+                return true;
+            }
+
+            if (num < 1) {
+                sender.sendMessage(ChatColor.DARK_RED + command.getUsage());
+                return true;
+            } else if (num > pages) {
+                sender.sendMessage(ChatColor.DARK_RED + "Your ignore list is only " + pages + " page(s) long");
+                return true;
+            } else
+                page = num;
+        }
+
+        String message = ChatColor.GOLD + "Ignore list (page " + page + " of " + pages + "):\n";
+
+        int start = (page - 1) * 10;
+        int end = Math.min(start + 10, IgnoreManager.ignoreList.get(player.getUniqueId()).size());
+        for (int i = start; i < end; i++) {
+            UUID ignoredId = IgnoreManager.ignoreList.get(player.getUniqueId()).toArray(new UUID[0])[i];
+            String name = Bukkit.getOfflinePlayer(ignoredId).getName();
 
             message += (ChatColor.YELLOW + name + "\n");
         }

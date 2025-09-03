@@ -1,5 +1,5 @@
 name: ChatPlugin
-version: '1.1'
+version: '1.2'
 main: org.poopcraft.chatplugin.ChatPlugin
 description: "A chat plugin"
 author: "poopguy20"
@@ -19,7 +19,7 @@ commands:
     aliases: ignore
   ignorelist:
     description: "List the players you have ignored"
-    usage: "Usage: /ignorelist"
+    usage: "Usage: /ignorelist <page>"
     aliases: ignorelist
   kill:
     description: "Kill yourself"
