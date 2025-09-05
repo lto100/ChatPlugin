@@ -20,15 +20,6 @@ The JAR file will be put into build/libs/
 
 Features
 --------
-There are 6 commands in the plugin:
-
-	/whisper
-	/reply
-	/ignore
-	/ignorelist
-	/kill
-	/help
-
-Players' ignore lists are saved to an ignorelist.yml file in the plugin's data
-folder. When players are ignored, they won't be able to message the player
-who ignored them, and their public messages will be hidden from that player.
+- Private messaging
+- Ignoring players
+- Kill command
