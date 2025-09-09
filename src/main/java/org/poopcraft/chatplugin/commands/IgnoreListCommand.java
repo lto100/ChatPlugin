@@ -27,6 +27,7 @@ public class IgnoreListCommand implements CommandExecutor {
 
         int pages = (int) Math.ceil(IgnoreManager.ignoreList.get(player.getUniqueId()).size() / 10.0);
         int page = 1;
+
         if (args.length == 1) {
             int num;
 
@@ -43,8 +44,9 @@ public class IgnoreListCommand implements CommandExecutor {
             } else if (num > pages) {
                 sender.sendMessage(ChatColor.DARK_RED + "Your ignore list is only " + pages + " page(s) long");
                 return true;
-            } else
+            } else {
                 page = num;
+            }
         }
 
         String message = ChatColor.GOLD + "Ignore list (page " + page + " of " + pages + "):\n";

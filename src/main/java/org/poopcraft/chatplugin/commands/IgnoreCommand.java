@@ -12,6 +12,7 @@ import org.poopcraft.chatplugin.IgnoreManager;
 
 public class IgnoreCommand implements CommandExecutor, Listener {
     @Override
+    @SuppressWarnings("deprecation")
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length != 1) {
             sender.sendMessage(ChatColor.DARK_RED + command.getUsage());

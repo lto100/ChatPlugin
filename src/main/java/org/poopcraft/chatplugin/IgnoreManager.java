@@ -5,30 +5,33 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class IgnoreManager {
     private static final File ignoreFile = new File(ChatPlugin.getInstance().getDataFolder(), "ignorelist.yml");
     private static final YamlConfiguration ignoreConfig = YamlConfiguration.loadConfiguration(ignoreFile);
 
-    public static HashMap<UUID, Set<UUID>> ignoreList = new HashMap<>();
+    public static Map<UUID, Set<UUID>> ignoreList = new ConcurrentHashMap<>();
 
     public static void save() {
-        if (!ChatPlugin.getInstance().getDataFolder().exists())
+        if (!ChatPlugin.getInstance().getDataFolder().exists()) {
             ChatPlugin.getInstance().getDataFolder().mkdir();
+        }
 
-        for (UUID playerId : ignoreList.keySet()) {
-            Set<UUID> ignoredIds = ignoreList.get(playerId);
+        for (Map.Entry<UUID, Set<UUID>> entry : ignoreList.entrySet()) {
+            Set<UUID> ignoredIds = ignoreList.get(entry.getKey());
             List<String> ignoredIdStrings = new ArrayList<>();
 
-            for (UUID ignoredId : ignoredIds)
+            for (UUID ignoredId : ignoredIds) {
                 ignoredIdStrings.add(ignoredId.toString());
+            }
 
-            ignoreConfig.set(playerId.toString(), ignoredIdStrings);
+            ignoreConfig.set(entry.getKey().toString(), ignoredIdStrings);
         }
 
         try {
@@ -45,11 +48,16 @@ public class IgnoreManager {
                 List<String> ignoredIdStrings = ignoreConfig.getStringList(playerIdString);
                 Set<UUID> ignoredIds = new HashSet<>();
 
-                for (String ignoredIdString : ignoredIdStrings)
+                for (String ignoredIdString : ignoredIdStrings) {
                     ignoredIds.add(UUID.fromString(ignoredIdString));
+                }
 
                 ignoreList.put(playerId, ignoredIds);
             }
         }
+    }
+
+    public Map<UUID, Set<UUID>> getIgnoreList() {
+        return ignoreList;
     }
 }
