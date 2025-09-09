@@ -9,11 +9,12 @@ import org.bukkit.entity.Player;
 import org.poopcraft.chatplugin.IgnoreManager;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ReplyCommand implements CommandExecutor {
-    public static HashMap<UUID, UUID> reply = new HashMap<>();
+    public static Map<UUID, UUID> reply = new ConcurrentHashMap<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
