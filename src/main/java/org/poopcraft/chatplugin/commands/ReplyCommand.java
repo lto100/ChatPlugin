@@ -28,7 +28,7 @@ public class ReplyCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        Player target = Bukkit.getPlayer(ReplyCommand.reply.get(player.getUniqueId()));
+        Player target = Bukkit.getPlayer(ReplyCommand.replyMap.get(player.getUniqueId()));
 
         if (target == null) {
             player.sendMessage(ChatColor.DARK_RED + "You have no one to reply to");
