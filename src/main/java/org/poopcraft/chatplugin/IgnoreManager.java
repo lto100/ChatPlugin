@@ -16,7 +16,11 @@ public class IgnoreManager {
     private static final File ignoreFile = new File(ChatPlugin.getInstance().getDataFolder(), "ignorelist.yml");
     private static final YamlConfiguration ignoreConfig = YamlConfiguration.loadConfiguration(ignoreFile);
 
-    public static Map<UUID, Set<UUID>> ignoreList = new ConcurrentHashMap<>();
+    private static Map<UUID, Set<UUID>> ignoreList = new ConcurrentHashMap<>();
+
+    public static Map<UUID, Set<UUID>> getIgnoreList() {
+        return ignoreList;
+    }
 
     public static void save() {
         if (!ChatPlugin.getInstance().getDataFolder().exists()) {
@@ -55,9 +59,5 @@ public class IgnoreManager {
                 ignoreList.put(playerId, ignoredIds);
             }
         }
-    }
-
-    public Map<UUID, Set<UUID>> getIgnoreList() {
-        return ignoreList;
     }
 }

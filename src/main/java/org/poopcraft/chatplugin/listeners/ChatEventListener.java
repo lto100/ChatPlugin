@@ -18,7 +18,7 @@ public class ChatEventListener implements Listener {
         }
 
         for (Player recipient : Bukkit.getOnlinePlayers()) {
-            if (recipient != sender && IgnoreManager.ignoreList.get(recipient.getUniqueId()).contains(sender.getUniqueId())) {
+            if (recipient != sender && IgnoreManager.getIgnoreList().get(recipient.getUniqueId()).contains(sender.getUniqueId())) {
                 event.getRecipients().remove(recipient);
             }
         }

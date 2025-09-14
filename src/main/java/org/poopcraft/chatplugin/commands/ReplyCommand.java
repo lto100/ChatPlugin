@@ -14,7 +14,11 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ReplyCommand implements CommandExecutor {
-    public static Map<UUID, UUID> reply = new ConcurrentHashMap<>();
+    private static Map<UUID, UUID> replyMap = new ConcurrentHashMap<>();
+
+    public static Map<UUID, UUID> getReplyMap() {
+        return replyMap;
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -29,7 +33,7 @@ public class ReplyCommand implements CommandExecutor {
         if (target == null) {
             player.sendMessage(ChatColor.DARK_RED + "You have no one to reply to");
             return true;
-        } else if (IgnoreManager.ignoreList.get(player.getUniqueId()).contains(target.getUniqueId())) {
+        } else if (IgnoreManager.getIgnoreList().get(player.getUniqueId()).contains(target.getUniqueId())) {
             sender.sendMessage(ChatColor.DARK_RED + target.getName() + "is ignoring you");
             return true;
         }
@@ -39,8 +43,8 @@ public class ReplyCommand implements CommandExecutor {
         player.sendMessage(ChatColor.LIGHT_PURPLE + "To " + target.getName() + ": " + message);
         target.sendMessage(ChatColor.LIGHT_PURPLE + player.getName() + " whispers: " + message);
 
-        ReplyCommand.reply.put(player.getUniqueId(), target.getUniqueId());
-        ReplyCommand.reply.put(target.getUniqueId(), player.getUniqueId());
+        ReplyCommand.replyMap.put(player.getUniqueId(), target.getUniqueId());
+        ReplyCommand.replyMap.put(target.getUniqueId(), player.getUniqueId());
 
         return true;
     }

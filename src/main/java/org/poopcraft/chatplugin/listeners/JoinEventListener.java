@@ -12,6 +12,6 @@ public class JoinEventListener implements Listener {
     @EventHandler
     private void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        IgnoreManager.ignoreList.computeIfAbsent(player.getUniqueId(), uuid -> new HashSet<>());
+        IgnoreManager.getIgnoreList().computeIfAbsent(player.getUniqueId(), uuid -> new HashSet<>());
     }
 }

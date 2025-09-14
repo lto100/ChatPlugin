@@ -33,11 +33,11 @@ public class IgnoreCommand implements CommandExecutor, Listener {
 
         Player player = (Player) sender;
 
-        if (IgnoreManager.ignoreList.get(player.getUniqueId()).contains(target.getUniqueId())) {
-            IgnoreManager.ignoreList.get(player.getUniqueId()).remove(target.getUniqueId());
+        if (IgnoreManager.getIgnoreList().get(player.getUniqueId()).contains(target.getUniqueId())) {
+            IgnoreManager.getIgnoreList().get(player.getUniqueId()).remove(target.getUniqueId());
             sender.sendMessage(ChatColor.GOLD + target.getName() + " is no longer ignored");
         } else {
-            IgnoreManager.ignoreList.get(player.getUniqueId()).add(target.getUniqueId());
+            IgnoreManager.getIgnoreList().get(player.getUniqueId()).add(target.getUniqueId());
             sender.sendMessage(ChatColor.GOLD + "Now ignoring " + target.getName());
         }
 
