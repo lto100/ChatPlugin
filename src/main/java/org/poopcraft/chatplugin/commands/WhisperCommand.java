@@ -29,7 +29,7 @@ public class WhisperCommand implements CommandExecutor {
             return true;
         }
 
-        if (IgnoreManager.ignoreList.get(target.getUniqueId()).contains(player.getUniqueId())) {
+        if (IgnoreManager.getIgnoreList().get(target.getUniqueId()).contains(player.getUniqueId())) {
             sender.sendMessage(ChatColor.DARK_RED + target.getName() + " is ignoring you");
             return true;
         }
@@ -39,8 +39,8 @@ public class WhisperCommand implements CommandExecutor {
         sender.sendMessage(ChatColor.LIGHT_PURPLE + "To " + target.getName() + ": " + message);
         target.sendMessage(ChatColor.LIGHT_PURPLE + player.getName() + " whispers: " + message);
 
-        ReplyCommand.reply.put(player.getUniqueId(), target.getUniqueId());
-        ReplyCommand.reply.put(target.getUniqueId(), player.getUniqueId());
+        ReplyCommand.getReplyMap().put(player.getUniqueId(), target.getUniqueId());
+        ReplyCommand.getReplyMap().put(target.getUniqueId(), player.getUniqueId());
 
         return true;
     }
