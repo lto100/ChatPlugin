@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.poopcraft.chatplugin.ChatPlugin;
 import org.poopcraft.chatplugin.IgnoreManager;
 
 import java.util.Arrays;
@@ -42,6 +43,8 @@ public class ReplyCommand implements CommandExecutor {
 
         player.sendMessage(ChatColor.LIGHT_PURPLE + "To " + target.getName() + ": " + message);
         target.sendMessage(ChatColor.LIGHT_PURPLE + player.getName() + " whispers: " + message);
+
+        ChatPlugin.getInstance().getLogger().info(player.getName() + " whispers to " + target.getName() + ": " + message);
 
         ReplyCommand.replyMap.put(player.getUniqueId(), target.getUniqueId());
         ReplyCommand.replyMap.put(target.getUniqueId(), player.getUniqueId());
