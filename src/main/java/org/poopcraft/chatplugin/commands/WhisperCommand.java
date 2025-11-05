@@ -14,13 +14,16 @@ import java.util.Arrays;
 public class WhisperCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length < 2) {
+        if (!(sender instanceof Player)) {
+            ChatPlugin.getInstance().getLogger().info("You must be a player to run this command");
+            return true;
+        } else if (args.length < 2) {
             sender.sendMessage(ChatColor.DARK_RED + command.getUsage());
             return true;
         }
 
         Player player = (Player) sender;
-        Player target = (Player) Bukkit.getPlayerExact(args[0]);
+        Player target = Bukkit.getPlayerExact(args[0]);
 
         if (target == null) {
             sender.sendMessage(ChatColor.DARK_RED + args[0] + " is not online");

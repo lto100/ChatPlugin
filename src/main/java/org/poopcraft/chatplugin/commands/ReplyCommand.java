@@ -23,7 +23,10 @@ public class ReplyCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length < 1) {
+        if (!(sender instanceof Player)) {
+            ChatPlugin.getInstance().getLogger().info("You must be a player to run this command");
+            return true;
+        } else if (args.length < 1) {
             sender.sendMessage(ChatColor.DARK_RED + command.getUsage());
             return true;
         }
