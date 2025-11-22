@@ -22,6 +22,7 @@ public final class ChatPlugin extends JavaPlugin {
         this.getCommand("ignore").setExecutor(new IgnoreCommand());
         this.getCommand("ignorelist").setExecutor(new IgnoreListCommand());
         this.getCommand("kill").setExecutor(new KillCommand());
+        this.getCommand("rules").setExecutor(new RulesCommand());
         this.getCommand("help").setExecutor(new HelpCommand());
 
         getServer().getPluginManager().registerEvents(new ChatEventListener(), this);

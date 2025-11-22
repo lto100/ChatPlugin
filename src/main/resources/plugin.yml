@@ -25,6 +25,10 @@ commands:
     description: Kill yourself
     usage: "Usage: /kill"
     aliases: kill
+  rules:
+    description: Show a list of the rules
+    usage: "Usage: /rules"
+    aliases: rules
   help:
     description: Show a list of all commands
     usage: "Usage: /help"
