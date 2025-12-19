@@ -1,4 +1,4 @@
-package org.poopcraft.chatplugin.commands;
+package org.poopcraft.chatplugin.commands.ignore;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -7,7 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.poopcraft.chatplugin.ChatPlugin;
-import org.poopcraft.chatplugin.IgnoreManager;
+import org.poopcraft.chatplugin.utils.IgnoreUtil;
 
 import java.util.UUID;
 
@@ -24,12 +24,12 @@ public class IgnoreListCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (IgnoreManager.getIgnoreList().get(player.getUniqueId()).isEmpty()) {
+        if (IgnoreUtil.getIgnoreList().get(player.getUniqueId()).isEmpty()) {
             sender.sendMessage(ChatColor.DARK_RED + "You aren't ignoring anyone");
             return true;
         }
 
-        int pages = (int) Math.ceil(IgnoreManager.getIgnoreList().get(player.getUniqueId()).size() / 10.0);
+        int pages = (int) Math.ceil(IgnoreUtil.getIgnoreList().get(player.getUniqueId()).size() / 10.0);
         int page = 1;
 
         if (args.length == 1) {
@@ -53,12 +53,12 @@ public class IgnoreListCommand implements CommandExecutor {
             }
         }
 
-        String message = ChatColor.GOLD + "Ignore list (page " + page + " of " + pages + "):\n";
+        String message = ChatColor.GOLD + "ignore list (page " + page + " of " + pages + "):\n";
 
         int start = (page - 1) * 10;
-        int end = Math.min(start + 10, IgnoreManager.getIgnoreList().get(player.getUniqueId()).size());
+        int end = Math.min(start + 10, IgnoreUtil.getIgnoreList().get(player.getUniqueId()).size());
         for (int i = start; i < end; i++) {
-            UUID ignoredId = IgnoreManager.getIgnoreList().get(player.getUniqueId()).toArray(new UUID[0])[i];
+            UUID ignoredId = IgnoreUtil.getIgnoreList().get(player.getUniqueId()).toArray(new UUID[0])[i];
             String name = Bukkit.getOfflinePlayer(ignoredId).getName();
 
             message += (ChatColor.YELLOW + name + "\n");
