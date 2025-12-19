@@ -1,6 +1,7 @@
-package org.poopcraft.chatplugin;
+package org.poopcraft.chatplugin.utils;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.poopcraft.chatplugin.ChatPlugin;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,11 +13,11 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class IgnoreManager {
+public class IgnoreUtil {
     private static final File ignoreFile = new File(ChatPlugin.getInstance().getDataFolder(), "ignorelist.yml");
     private static final YamlConfiguration ignoreConfig = YamlConfiguration.loadConfiguration(ignoreFile);
 
-    private static Map<UUID, Set<UUID>> ignoreList = new ConcurrentHashMap<>();
+    private static final Map<UUID, Set<UUID>> ignoreList = new ConcurrentHashMap<>();
 
     public static Map<UUID, Set<UUID>> getIgnoreList() {
         return ignoreList;

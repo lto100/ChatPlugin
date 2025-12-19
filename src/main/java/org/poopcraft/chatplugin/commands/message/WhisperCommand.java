@@ -1,4 +1,4 @@
-package org.poopcraft.chatplugin.commands;
+package org.poopcraft.chatplugin.commands.message;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -7,7 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.poopcraft.chatplugin.ChatPlugin;
-import org.poopcraft.chatplugin.IgnoreManager;
+import org.poopcraft.chatplugin.utils.*;
 
 import java.util.Arrays;
 
@@ -26,27 +26,20 @@ public class WhisperCommand implements CommandExecutor {
         Player target = Bukkit.getPlayerExact(args[0]);
 
         if (target == null) {
-            sender.sendMessage(ChatColor.DARK_RED + args[0] + " is not online");
+            player.sendMessage(ChatColor.DARK_RED + "Player '" + args[0] + "' cannot be found");
             return true;
         } else if (target.getName().equals(player.getName())) {
-            sender.sendMessage(ChatColor.DARK_RED + "You can't send a message to yourself");
+            player.sendMessage(ChatColor.DARK_RED + "You can't send a private message to yourself");
             return true;
         }
 
-        if (IgnoreManager.getIgnoreList().get(target.getUniqueId()).contains(player.getUniqueId())) {
-            sender.sendMessage(ChatColor.DARK_RED + target.getName() + " is ignoring you");
+        if (IgnoreUtil.getIgnoreList().get(target.getUniqueId()).contains(player.getUniqueId())) {
+            player.sendMessage(ChatColor.DARK_RED + target.getName() + " is ignoring you");
             return true;
         }
 
         String message = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
-
-        sender.sendMessage(ChatColor.LIGHT_PURPLE + "To " + target.getName() + ": " + message);
-        target.sendMessage(ChatColor.LIGHT_PURPLE + player.getName() + " whispers: " + message);
-
-        ChatPlugin.getInstance().getLogger().info(player.getName() + " whispers to " + target.getName() + ": " + message);
-
-        ReplyCommand.getReplyMap().put(player.getUniqueId(), target.getUniqueId());
-        ReplyCommand.getReplyMap().put(target.getUniqueId(), player.getUniqueId());
+        MessageUtil.sendWhisper(player, target, message);
 
         return true;
     }

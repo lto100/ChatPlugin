@@ -1,12 +1,12 @@
 name: ChatPlugin
-version: '1.3.2'
+version: '1.3.3'
 main: org.poopcraft.chatplugin.ChatPlugin
 description: A chat plugin
 author: poopguy20
 
 commands:
   whisper:
-    description: Send a message to a player
+    description: Send a private message to a player
     usage: "Usage: /whisper <name> <message>"
     aliases: [ w, whisper, msg, tell ]
   reply:

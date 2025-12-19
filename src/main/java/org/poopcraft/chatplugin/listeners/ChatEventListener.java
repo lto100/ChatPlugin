@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.poopcraft.chatplugin.IgnoreManager;
+import org.poopcraft.chatplugin.utils.IgnoreUtil;
 
 public class ChatEventListener implements Listener {
     @EventHandler
@@ -18,7 +18,7 @@ public class ChatEventListener implements Listener {
         }
 
         for (Player recipient : Bukkit.getOnlinePlayers()) {
-            if (recipient != sender && IgnoreManager.getIgnoreList().get(recipient.getUniqueId()).contains(sender.getUniqueId())) {
+            if (recipient != sender && IgnoreUtil.getIgnoreList().get(recipient.getUniqueId()).contains(sender.getUniqueId())) {
                 event.getRecipients().remove(recipient);
             }
         }

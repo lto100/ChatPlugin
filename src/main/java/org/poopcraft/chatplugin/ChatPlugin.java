@@ -2,7 +2,10 @@ package org.poopcraft.chatplugin;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.poopcraft.chatplugin.commands.*;
+import org.poopcraft.chatplugin.commands.ignore.*;
+import org.poopcraft.chatplugin.commands.message.*;
 import org.poopcraft.chatplugin.listeners.*;
+import org.poopcraft.chatplugin.utils.IgnoreUtil;
 
 public final class ChatPlugin extends JavaPlugin {
     private static ChatPlugin instance;
@@ -15,7 +18,7 @@ public final class ChatPlugin extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        IgnoreManager.load();
+        IgnoreUtil.load();
 
         this.getCommand("whisper").setExecutor(new WhisperCommand());
         this.getCommand("reply").setExecutor(new ReplyCommand());
@@ -31,7 +34,7 @@ public final class ChatPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        IgnoreManager.save();
+        IgnoreUtil.save();
         instance = null;
     }
 }
