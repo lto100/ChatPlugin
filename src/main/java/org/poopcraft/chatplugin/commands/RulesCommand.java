@@ -18,7 +18,7 @@ public class RulesCommand implements CommandExecutor {
             return true;
         }
 
-        sender.sendMessage(ChatColor.GOLD + "Rules:\n" + ChatColor.YELLOW + "The only rule is that you are not allowed to dupe");
+        sender.sendMessage(ChatColor.GOLD + "rules:\n" + ChatColor.YELLOW + "No duping");
 
         return true;
     }
