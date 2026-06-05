@@ -1,0 +1,14 @@
+ChatPlugin
+==========
+A chat plugin for paper 1.12.2 Minecraft servers.
+
+Features
+--------
+- Private messaging
+- Ignoring players
+- Kill command
+- Green text
+
+License
+-------
+ChatPlugin is released to the public domain.

@@ -1,0 +1,34 @@
+package org.poopcraft.chatplugin.commands;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.poopcraft.chatplugin.ChatPlugin;
+
+import java.util.Map;
+
+public class HelpCommand implements CommandExecutor {
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (!(sender instanceof Player)) {
+            ChatPlugin.getInstance().getLogger().info("You must be a player to run this command");
+            return true;
+        } else if (args.length > 0) {
+            sender.sendMessage(ChatColor.DARK_RED + command.getUsage());
+            return true;
+        }
+
+        String message = ChatColor.GOLD + "commands:\n" + ChatColor.YELLOW;
+
+        Map<String, Map<String, Object>> commands = ChatPlugin.getInstance().getDescription().getCommands();
+        for (Map.Entry<String, Map<String, Object>> entry : commands.entrySet()) {
+            message += "/" + entry.getKey() + " - " + entry.getValue().get("description") + "\n";
+        }
+
+        sender.sendMessage(message);
+
+        return true;
+    }
+}

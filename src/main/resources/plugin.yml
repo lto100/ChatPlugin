@@ -1,0 +1,30 @@
+name: ChatPlugin
+version: '1.0.0'
+main: org.poopcraft.chatplugin.ChatPlugin
+description: A chat plugin
+
+commands:
+  whisper:
+    description: "Send a private message to a player"
+    usage: "Usage: /whisper <name> <message>"
+    aliases: [w, whisper, msg, tell]
+  reply:
+    description: "Reply to the last person who messaged you"
+    usage: "Usage: /reply <message>"
+    aliases: [r, reply]
+  ignore:
+    description: "Hide a player's messages"
+    usage: "Usage: /ignore <name>"
+    aliases: ignore
+  ignorelist:
+    description: "List the players you have ignored"
+    usage: "Usage: /ignorelist <page>"
+    aliases: ignorelist
+  kill:
+    description: "Kill yourself"
+    usage: "Usage: /kill"
+    aliases: kill
+  help:
+    description: "Show a list of all commands"
+    usage: "Usage: /help"
+    aliases: help
