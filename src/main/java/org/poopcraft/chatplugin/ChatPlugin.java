@@ -5,6 +5,7 @@ import org.poopcraft.chatplugin.commands.HelpCommand;
 import org.poopcraft.chatplugin.commands.KillCommand;
 import org.poopcraft.chatplugin.commands.ignore.IgnoreCommand;
 import org.poopcraft.chatplugin.commands.ignore.IgnoreListCommand;
+import org.poopcraft.chatplugin.commands.message.LastCommand;
 import org.poopcraft.chatplugin.commands.message.ReplyCommand;
 import org.poopcraft.chatplugin.commands.message.WhisperCommand;
 import org.poopcraft.chatplugin.listeners.ChatEventListener;
@@ -26,6 +27,7 @@ public final class ChatPlugin extends JavaPlugin {
 
         this.getCommand("whisper").setExecutor(new WhisperCommand());
         this.getCommand("reply").setExecutor(new ReplyCommand());
+        this.getCommand("last").setExecutor(new LastCommand());
         this.getCommand("ignore").setExecutor(new IgnoreCommand());
         this.getCommand("ignorelist").setExecutor(new IgnoreListCommand());
         this.getCommand("kill").setExecutor(new KillCommand());

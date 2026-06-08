@@ -12,6 +12,10 @@ commands:
     description: "Reply to the last person who messaged you"
     usage: "Usage: /reply <message>"
     aliases: [r, reply]
+  last:
+    description: "Send a message to the last person you messaged"
+    usage: "Usage: /last <message>"
+    aliases: [l, last]
   ignore:
     description: "Hide a player's messages"
     usage: "Usage: /ignore <name>"
