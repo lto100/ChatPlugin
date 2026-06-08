@@ -3,6 +3,7 @@ package org.poopcraft.chatplugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.poopcraft.chatplugin.commands.HelpCommand;
 import org.poopcraft.chatplugin.commands.KillCommand;
+import org.poopcraft.chatplugin.commands.RulesCommand;
 import org.poopcraft.chatplugin.commands.ignore.IgnoreCommand;
 import org.poopcraft.chatplugin.commands.ignore.IgnoreListCommand;
 import org.poopcraft.chatplugin.commands.message.LastCommand;
@@ -31,6 +32,7 @@ public final class ChatPlugin extends JavaPlugin {
         this.getCommand("ignore").setExecutor(new IgnoreCommand());
         this.getCommand("ignorelist").setExecutor(new IgnoreListCommand());
         this.getCommand("kill").setExecutor(new KillCommand());
+        this.getCommand("rules").setExecutor(new RulesCommand());
         this.getCommand("help").setExecutor(new HelpCommand());
 
         getServer().getPluginManager().registerEvents(new ChatEventListener(), this);
